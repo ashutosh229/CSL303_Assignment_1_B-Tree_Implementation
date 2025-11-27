@@ -316,17 +316,6 @@ LD_LIBRARY_PATH=./target/release ./program
 ✅ **Tested** - Comprehensive test suite included
 ✅ **Special Key** - Handles -5432 → 42 requirement
 
-## Benchmark Expectations
-
-On a modern system (SSD, 8GB RAM), expect:
-
-- **Insert**: 10-20 μs per operation
-- **Read**: 5-10 μs per operation
-- **Range (100 keys)**: 500-1000 μs
-- **Bulk (1000 inserts)**: 15-25 ms
-
-Your performance will determine your grade - this Rust implementation should be among the fastest submissions!
-
 ## Documentation
 
 Generate and view full API docs:
@@ -343,17 +332,9 @@ cargo doc --open
 
 ## Summary
 
-You now have:
+We now have:
 - ✅ High-performance B+ tree implementation
 - ✅ Memory-safe code (no undefined behavior)
 - ✅ Complete test suite
 - ✅ Performance benchmarks
 - ✅ Both Rust and C APIs
-- ✅ All assignment requirements met
-
-**Total setup time: ~5 minutes**
-**Lines of safe, fast code: ~800**
-**Memory leaks: 0 (guaranteed by Rust)**
-**Performance: Top tier**
-
-Good luck with your assignment! 🚀
