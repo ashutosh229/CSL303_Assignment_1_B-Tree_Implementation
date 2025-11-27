@@ -15,6 +15,7 @@ path = "src/main.rs"
 [dependencies]
 memmap2 = "0.9"
 lazy_static = "1.4"
+bincode = "2.0.1"
 
 [profile.release]
 opt-level = 3
