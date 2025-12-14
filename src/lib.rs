@@ -250,7 +250,6 @@ impl BPlusTree {
         let mut new_leaf = LeafNode::new();
         let mid = (LEAF_ORDER + 1) / 2;
 
-        // Use Vec to avoid stack overflow
         let mut keys = vec![0; LEAF_ORDER + 1];
         let mut datas = vec![[0u8; DATA_SIZE]; LEAF_ORDER + 1];
         for i in 0..LEAF_ORDER {

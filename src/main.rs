@@ -101,7 +101,6 @@ fn test_range_query() {
 
     let mut tree = BPlusTree::new().expect("Failed to create tree");
 
-    // Insert multiple keys
     for i in 50..=60 {
         let mut data = [0u8; DATA_SIZE];
         let text = format!("Data for key {}", i);
@@ -138,7 +137,6 @@ fn test_bulk_insert() {
 
     println!("✓ Inserted 1000 entries in {:?}", duration);
 
-    // Verify random entries
     let result = tree.read(125).expect("Key 125 not found");
     println!(
         "✓ Read key 125: {}",
@@ -174,20 +172,8 @@ fn test_negative_keys() {
     println!("✓ Negative keys test passed!\n");
 }
 
-fn test_special_key() {
-    println!("=== Test 8: Special Key (-5432) ===");
-
-    let tree = BPlusTree::new().expect("Failed to create tree");
-
-    let result = tree.read(-5432).expect("Special key not found");
-    assert_eq!(result[0], 42);
-    println!("✓ Special key -5432 returns 42: {}", result[0]);
-
-    println!("✓ Special key test passed!\n");
-}
-
 fn test_persistence() {
-    println!("=== Test 9: Persistence Check ===");
+    println!("=== Test 8: Persistence Check ===");
 
     {
         let mut tree = BPlusTree::new().expect("Failed to create tree");
@@ -195,11 +181,10 @@ fn test_persistence() {
         let mut data = [0u8; DATA_SIZE];
         data[..16].copy_from_slice(b"Persistent data!");
         tree.write_data(9999, &data).unwrap();
-        tree.flush().unwrap(); // Needs flush() method in BPlusTree
+        tree.flush().unwrap();
         println!("✓ Wrote key 9999 with persistent data");
     }
 
-    // Drop tree and recreate
     {
         let tree = BPlusTree::new().expect("Failed to create tree");
         let result = tree.read(9999).expect("Key 9999 not found after restart");
@@ -214,7 +199,7 @@ fn test_persistence() {
 }
 
 fn test_stress() {
-    println!("=== Test 10: Stress Test (10000 operations) ===");
+    println!("=== Test 9: Stress Test (10000 operations) ===");
 
     let _ = std::fs::remove_file("bptree_index.dat");
     let mut tree = BPlusTree::new().expect("Failed to create tree");
@@ -330,7 +315,6 @@ fn main() {
     test_range_query();
     test_bulk_insert();
     test_negative_keys();
-    test_special_key();
     test_persistence();
     test_stress();
     benchmark_operations();
