@@ -273,21 +273,6 @@ The driver includes 10 comprehensive tests:
 9. ✅ **Persistence**: Data survives restarts
 10. ✅ **Stress Test**: 10,000 operations
 
-Plus performance benchmarks for all operations.
-
-## Performance Comparison
-
-Typical performance on modern hardware:
-
-| Operation | Rust | C++ | Improvement |
-|-----------|------|-----|-------------|
-| Insert | ~15 μs/op | ~18 μs/op | 17% faster |
-| Read | ~8 μs/op | ~10 μs/op | 20% faster |
-| Range (100 keys) | ~800 μs | ~950 μs | 16% faster |
-| Compilation | Fast | Slower | Better |
-| Memory Safety | ✅ Guaranteed | ❌ Manual | Infinite |
-
-*Results may vary based on hardware and workload*
 
 ## Advantages Over C++ Implementation
 

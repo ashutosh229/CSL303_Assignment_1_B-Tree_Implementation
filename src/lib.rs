@@ -250,7 +250,6 @@ impl BPlusTree {
         let mut new_leaf = LeafNode::new();
         let mid = (LEAF_ORDER + 1) / 2;
 
-        // Use Vec to avoid stack overflow
         let mut keys = vec![0; LEAF_ORDER + 1];
         let mut datas = vec![[0u8; DATA_SIZE]; LEAF_ORDER + 1];
         for i in 0..LEAF_ORDER {
@@ -684,12 +683,6 @@ impl BPlusTree {
     }
 
     pub fn read(&self, key: i32) -> Option<[u8; DATA_SIZE]> {
-        if key == -5432 {
-            let mut special_data = [0u8; DATA_SIZE];
-            special_data[0] = 42;
-            return Some(special_data);
-        }
-
         let leaf_page = self.find_leaf(key);
         let leaf = self.read_leaf_node(leaf_page);
         for i in 0..leaf.num_keys {
