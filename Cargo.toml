@@ -1,21 +1,11 @@
 [package]
-name = "bptree_rust"
+name = "bplus_tree_index"
 version = "1.0.0"
 edition = "2021"
-authors = ["Assignment Implementation"]
-
-[lib]
-name = "bptree"
-crate-type = ["cdylib", "rlib"]
-
-[[bin]]
-name = "bptree_test"
-path = "src/main.rs"
 
 [dependencies]
 memmap2 = "0.9"
-lazy_static = "1.4"
-bincode = "2.0.1"
+libc = "0.2"
 
 [profile.release]
 opt-level = 3
@@ -24,8 +14,11 @@ codegen-units = 1
 panic = "abort"
 strip = true
 
-[profile.dev]
-opt-level = 0
+[lib]
+name = "bplus_tree_index"
+path = "src/lib.rs"
+crate-type = ["staticlib", "cdylib", "rlib"]
 
-[profile.bench]
-opt-level = 3
+[[bin]]
+name = "driver"
+path = "src/driver.rs"
